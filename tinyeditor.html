@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>tinyeditor</title>
+<link rel="stylesheet" href="tinyeditor/tinyeditor.css" type="text/css" />
+<script type="text/javascript" src="tinyeditor/tinyeditor.js"></script>
+</head>
+<body>
+<textarea id="my_editor"></textarea>
+<script>
+var editor = new TINY({
+  id: 'my_editor',
+  width: 600,
+  heitht: 400,
+  cssclass: 'tinyeditor',
+  controlclass: 'tinyeditor-control',
+  rowclass: 'tinyeditor-header',
+  dividerclass: 'tinyeditor-divider',
+  controls: ['bold', 'italic', 'underline', 'strikethrough', '|', 'subscript', 'superscript', '|', 'orderedlist', 'unorderedlist', '|', 'outdent', 'indent', '|', 'leftalign', 'centeralign', 'rightalign', 'blockjustify', '|', 'unformat', '|', 'undo', 'redo', 'n', 'font', 'size', 'style', '|', 'image', 'hr', 'link', 'unlink', '|', 'print'],
+  footer: true,
+  fonts: ['Verdana', 'Arial', 'Georgia', 'Trebuchet MS'],
+  xhtml: true,
+  bodyid: 'editor_body',
+  footerclass: 'tinyeditor-footer',
+  toggle: {text: 'Source', activetext: 'WYSIWYG', cssclass: 'toggle'},
+  resize: {cssclass: 'resize'}
+});
+</script>
+</body>
+</html>

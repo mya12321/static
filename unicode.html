@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>unicode</title>
+</head>
+<body>
+<script type="text/javascript">
+!function() {
+  function calculateUTF8(code) {
+    if (code < 128) {
+      return ('0' + code.toString(16)).slice(-2).toUpperCase();
+    } else {
+      return encodeURIComponent(String.fromCharCode(code)).replace(/%/g, '');
+    }
+  }
+  var arr = [];
+  for (i = 0; i < 64; i++) {
+    if (i === 54 || i === 55) continue;
+    var str = '';
+    str += '<table border="1" align="center" style="color:red;">';
+    for (j = 0; j < 64; j++) {
+      str += '<tr>';
+      for (k = 0; k < 16; k++) {
+        var num = i*1024+j*16+k; 
+        str += '<td title="' + calculateUTF8(num) + '">' + num + '<span style="color:black;font-size:16pt;">&#' + num + ';</span></td>';
+      }
+      str += '</tr>';
+    }
+    str += '</table><br />';
+    arr[arr.length] = str;
+  }
+  document.body.onload = function() {
+    function loop(i) {
+      if (arr.length != 0) {
+        document.write(arr.shift());
+        document.getElementsByTagName('TABLE')[i++].onclick = choose;
+        window.setTimeout(function(){loop(i);}, 1);
+      } else {
+        document.close();
+      }
+    }
+    function choose(e) {
+      var node = e.target;
+      if(node.tagName == "SPAN") {
+        select(node);
+      } else if(node.tagName == "TD") {
+        select(node.childNodes[1]);
+      }
+      function select(node) {
+        sel = window.getSelection();
+        range = document.createRange();
+        range.selectNodeContents(node);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+    document.write('<head><meta charset="utf-8"><title>unicode</title></head>');
+    loop(0);
+  }
+}();
+</script>
+</body>
+</html>

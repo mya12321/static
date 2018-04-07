@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BeautyInCurve</title>
+  <style type="text/css">
+    .wrapper {
+      width: 90%;
+      margin: auto;
+    }
+    .control {
+      display: inline-block;
+      width: 27%;
+      vertical-align: top;
+      margin-top: 50px;
+    }
+    .canvasWrapper {
+      display: inline-block;
+      width: 70%;
+      padding-top: 30px;
+    }
+    .canvas {
+      display: block;
+      margin: auto;
+    }
+    .button {
+      width: 70px;
+      margin: 0 2px;
+    }
+    .block {
+      display: block;
+      margin-top: 10px;
+    }
+    .align {
+      line-height: 24px;
+      vertical-align: top;
+      margin-top: 10px;
+    }
+    .pointer {
+      cursor: pointer;
+    }
+    .grab {
+      cursor: grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+    }
+    @media screen and (max-device-width: 450px) {
+      body {
+        font-size: 0.8em;
+      }
+      .control {
+        display: block;
+        width: 80%;
+        margin: 20px auto 0;
+      }
+      .canvasWrapper {
+        display: block;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="control">
+    <div id="inputControl">
+      <div id="inputRadio">
+        <span class="block">Please select point location:</span>
+        <label class="pointer" for="innerRadio">
+          <input class="pointer" id="innerRadio" name="pointLocation" type="radio" value="inner">
+          Inner
+        </label>
+        <label class="pointer" for="outerRadio">
+          <input class="pointer" id="outerRadio" name="pointLocation" type="radio" value="outer">
+          Outer
+        </label>
+      </div>
+      <div id="inputArea">
+      </div>
+    </div>
+    <div class="block">
+      <span class="align">
+        Speed:
+      </span>
+      <input class="grab" id="speed" type="range" step="1" min="1" max="5">
+    </div>
+    <div class="block" id="buttonArea">
+      <button class="button" id="random">Random</button>
+      <button class="button" id="play">Play</button>
+      <button class="button" id="stop">Stop</button>
+    </div>
+  </div>
+  <div class="canvasWrapper" id="canvasWrapper">
+    <canvas class="canvas" id="canvas"></canvas>
+  </div>
+</div>
+<script type="text/javascript" src="beautyincurve.js"></script>
+</body>
+</html>

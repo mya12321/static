@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>encrypt</title>
+<style>
+.wrapper{
+  font-size: 16px;
+}
+#key,#content,#result{
+  display: block;
+  width: 300px;
+  padding: 2px;
+  border-width: 2px;
+}
+button{
+  line-height: 16px;
+  margin: 5px 43px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <input id="key" type="password" placeholder="Key">
+  <textarea id="content" rows="16" placeholder="Content"></textarea>
+  <button id="encrypt" type="button">Encrypt</button>
+  <button id="decrypt" type="button">Decrypt</button>
+  <textarea id="result" style="display: none;" rows="16" readonly></textarea>
+</div>
+<script>
+  $('.wrapper').on('click', 'button', function() {
+    var url = '/' + $(this).attr('id'), key = $('#key').val(), content = $('#content').val();
+    if(key && content) {
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          key: base64Encode(key),
+          content: content
+        },
+        dataType: 'json',
+        success: displayResult
+      });
+    } else {
+      alert('Please input key and content!');
+    }
+  });
+  function base64Encode(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+      return String.fromCharCode('0x' + p1);
+    }));
+  }
+  function displayResult(data) {
+    if (data.error) {
+      alert(data.error);
+    } else {
+      $('#result').val(data.result).show();
+    }
+  }
+</script>
+</body>
+</html>
