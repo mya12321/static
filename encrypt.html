@@ -30,7 +30,7 @@ button{
 </div>
 <script>
   $('.wrapper').on('click', 'button', function() {
-    var url = '/' + $(this).attr('id'), key = $('#key').val(), content = $('#content').val();
+    var url = 'https://www.andymya.com:456/' + $(this).attr('id'), key = $('#key').val(), content = $('#content').val();
     if(key && content) {
       $.ajax({
         url: url,
