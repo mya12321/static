@@ -217,6 +217,10 @@ body{
     var result = dom.find('#res');
     var style = dom.filter('style');
     var outer = $('#result');
+    result.find('h3.r>a').each(function () {
+      var url = this.href;
+      this.href = url.slice(0, url.indexOf('&')).replace('/url?q=', '');
+    });
     $('#input').off('input').on('input', list);
     outer.removeClass('spin').empty().append(style).append(result).append(navigation());
   }
