@@ -219,7 +219,7 @@ body{
     var outer = $('#result');
     result.find('h3.r>a').each(function () {
       var url = this.href;
-      this.href = url.slice(34, url.indexOf('&'));
+      this.href = url.slice(33, url.indexOf('&'));
     });
     $('#input').off('input').on('input', list);
     outer.removeClass('spin').empty().append(style).append(result).append(navigation());
