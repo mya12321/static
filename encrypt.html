@@ -36,7 +36,7 @@ button{
         url: url,
         type: 'POST',
         data: {
-          key: base64Encode(key),
+          key: encode(key),
           content: content
         },
         dataType: 'json',
@@ -46,10 +46,11 @@ button{
       alert('Please input key and content!');
     }
   });
-  function base64Encode(str) {
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-      return String.fromCharCode('0x' + p1);
-    }));
+  function encode(str) {
+    var convert = unescape(encodeURIComponent(str));
+    var array = convert.split('');
+    array.map(val => val.charCodeAt(0)).map(val => String.fromCharCode((val^val<<1^val>>1)&255));
+    return btoa(array.join());
   }
   function displayResult(data) {
     if (data.error) {
