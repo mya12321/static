@@ -1,97 +1,97 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<title>search</title>
-<style>
-html,body{
-  height: 100%;
-}
-body{
-  margin: 0;
-  padding: 0;
-}
-#input{
-  margin: 8px 8px 0 8px;
-  width: 200px;
-  line-height: 16px;
-  vertical-align: bottom;
-  font-size: 16px;
-}
-#button{
-  width: 80px;
-  line-height: 16px;
-  font-size: 16px;
-}
-.wrapper{
-  width: 100%;
-  position: relative;
-}
-.close-icon{
-  width: 16px;
-  position: absolute;
-  top: 12px;
-  left: 190px;
-  display: none;
-}
-.dropdown{
-  border: 1px solid black;
-  display: none;
-  position: absolute;
-  top: 31px;
-  left: 8px;
-  font-size: 16px;
-}
-@media screen and (max-device-width: 400px) {
-  .close-icon{
-    width: 16px;
-    display: none;
-    position: absolute;
-    top: 14px;
-    left: 200px;
-  }
-  .dropdown{
-    border: 1px solid black;
-    display: none;
-    font-size: 16px;
-    position: absolute;
-    top: 36px;
-    left: 8px;
-  }
-}
-.dropdown li{
-  display: block;
-  padding: 0 10px;
-  cursor: default;
-  background-color: #FFF;
-}
-.dropdown li.hover{
-  background-color: #01A982;
-}
-#result{
-  margin: 20px;
-}
-.spin{
-  height: 80%;
-  background-image: url("spin.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.link{
-  margin: 10px;
-  color: #1a0dab;
-  font-family: fantasy;
-  font-size: 16px;
-  cursor: pointer;
-}
-.link:hover{
-  text-decoration: underline;
-}
-.link:visited{
-  color: #61C;
-}
-</style>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>search</title>
+  <style>
+    html,body{
+      height: 100%;
+    }
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    #input{
+      margin: 8px 8px 0 8px;
+      width: 200px;
+      line-height: 16px;
+      vertical-align: bottom;
+      font-size: 16px;
+    }
+    #button{
+      width: 82px;
+      line-height: 16px;
+      font-size: 16px;
+    }
+    .wrapper{
+      width: 100%;
+      position: relative;
+    }
+    .close-icon{
+      width: 16px;
+      position: absolute;
+      top: 12px;
+      left: 190px;
+      display: none;
+    }
+    .dropdown{
+      border: 1px solid black;
+      display: none;
+      position: absolute;
+      top: 31px;
+      left: 8px;
+      font-size: 16px;
+    }
+    @media screen and (max-device-width: 400px) {
+      .close-icon{
+        width: 16px;
+        display: none;
+        position: absolute;
+        top: 14px;
+        left: 200px;
+      }
+      .dropdown{
+        border: 1px solid black;
+        display: none;
+        font-size: 16px;
+        position: absolute;
+        top: 36px;
+        left: 8px;
+      }
+    }
+    .dropdown li{
+      display: block;
+      padding: 0 10px;
+      cursor: default;
+      background-color: #FFF;
+    }
+    .dropdown li.hover{
+      background-color: #01A982;
+    }
+    #result{
+      margin: 20px;
+    }
+    .spin{
+      height: 80%;
+      background-image: url("spin.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .link{
+      margin: 10px;
+      color: #1a0dab;
+      font-family: fantasy;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .link:hover{
+      text-decoration: underline;
+    }
+    .link:visited{
+      color: #61C;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -103,139 +103,139 @@ body{
 <div id="result"></div>
 <img style="display:none;" src="spin.svg">
 <script>
-  var currentPage = 0, currentQuery = '';
-  $('#input').on('input', list);
-  $('#button').click(function(e) {
-    var val = $('#input').val().trim().replace(/\s+/g, '+');
-    search(val);
-  });
-  $('#input').on('keydown', function(e) {
-    if (e.keyCode === 40) {
-      if ($('#list').size()) {
-        var hovered = $('#list li.hover');
-        if (hovered.size()) {
-          hovered.removeClass('hover');
-          if (!hovered.is(':last')) {
-            hovered.next().addClass('hover');
-          }
-        } else {
-          $('#list li:first').addClass('hover');
-        }
-      }
-    } else if (e.keyCode === 38) {
-      if ($('#list').size()) {
-        var hovered = $('#list li.hover');
-        if (hovered.size()) {
-          hovered.removeClass('hover');
-          if (!hovered.is(':first')) {
-            hovered.prev().addClass('hover');
-          }
-        } else {
-          $('#list li:last').addClass('hover');
-        }
-      }
-    } else if (e.keyCode === 13) {
+var currentPage = 0, currentQuery = '';
+$('#input').on('input', list);
+$('#button').click(function(e) {
+  var val = $('#input').val().trim().replace(/\s+/g, '+');
+  search(val);
+});
+$('#input').on('keydown', function(e) {
+  if (e.keyCode === 40) {
+    if ($('#list').size()) {
       var hovered = $('#list li.hover');
       if (hovered.size()) {
-        $('#input').off('input').val(hovered.html());
+        hovered.removeClass('hover');
+        if (!hovered.is(':last')) {
+          hovered.next().addClass('hover');
+        }
+      } else {
+        $('#list li:first').addClass('hover');
       }
-      $('#button').click();
     }
-  });
-  $('#input').on('focus', function(e) {
-    if ($(this).val() !== '') {
-      $('#close').show();
+  } else if (e.keyCode === 38) {
+    if ($('#list').size()) {
+      var hovered = $('#list li.hover');
+      if (hovered.size()) {
+        hovered.removeClass('hover');
+        if (!hovered.is(':first')) {
+          hovered.prev().addClass('hover');
+        }
+      } else {
+        $('#list li:last').addClass('hover');
+      }
     }
-  });
-  $('#input').on('blur', function(e) {
-    $('#close').hide();
+  } else if (e.keyCode === 13) {
+    var hovered = $('#list li.hover');
+    if (hovered.size()) {
+      $('#input').off('input').val(hovered.html());
+    }
+    $('#button').click();
+  }
+});
+$('#input').on('focus', function(e) {
+  if ($(this).val() !== '') {
+    $('#close').show();
+  }
+});
+$('#input').on('blur', function(e) {
+  $('#close').hide();
+  $('#list').hide();
+});
+$('#close').on('mousedown', function(e) {
+  $('#input').val('');
+  $('#list').hide();
+  $('#close').hide();
+  e.preventDefault();
+});
+function list () {
+  var val = $(this).val().trim();
+  var url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su';
+  if (val === '') {
     $('#list').hide();
-  });
-  $('#close').on('mousedown', function(e) {
-    $('#input').val('');
-    $('#list').hide();
-    $('#close').hide();
-    e.preventDefault();
-  });
-  function list () {
-    var val = $(this).val().trim();
-    var url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su';
-    if (val === '') {
-      $('#list').hide();
-    } else {
-      $('#close').show();
-      $.ajax({
-        url: url,
-        data: {wd: val},
-        dataType: 'jsonp',
-        jsonp: 'cb',
-        success: listRes
-      });
-    }
-  }
-  function search (val, page) {
-    var url = 'https://www.andymiao.cn/search';
-    $('#input').trigger('blur');
-    if (val !== '') {
-      $.ajax({
-        url: url,
-        data: {
-          query: val,
-          page: page = page ? page : 0
-        },
-        dataType: 'jsonp',
-        jsonp: 'callback',
-        success: searchRes
-      });
-      $('#result').empty().addClass('spin');
-      currentPage = page;
-      currentQuery = val;
-    }
-  }
-  function listRes (data) {
-    if ($('#input').is(':focus')) {
-      $('#list').empty();
-      data.s.forEach(function(item){
-        var li = $('<li/>', {html: item}).on('mousedown', function(e) {
-          $('#input').off('input').val($(this).html());
-          $('#button').click();
-          e.preventDefault();
-        }).hover(function() {
-          $('#list li').removeClass('hover');
-          $(this).addClass('hover');
-        }, function() {
-          $(this).removeClass('hover');
-        });
-        $('#list').append(li);
-      });
-      $('#list').show();
-    }
-  }
-  function searchRes (data) {
-    console.log(data.html);
-    var dom = $(data.html);
-    var result = dom.find('#res');
-    var style = dom.filter('style');
-    var outer = $('#result');
-    result.find('h3.r>a').each(function () {
-      var url = this.href;
-      this.href = url.slice(33, url.indexOf('&'));
+  } else {
+    $('#close').show();
+    $.ajax({
+      url: url,
+      data: {wd: val},
+      dataType: 'jsonp',
+      jsonp: 'cb',
+      success: listRes
     });
-    $('#input').off('input').on('input', list);
-    outer.removeClass('spin').empty().append(style).append(result).append(navigation());
   }
-  function navigation () {
-    var nav = $('<div/>', {id: 'navigation'});
-    if (currentPage) {
-      $('<span/>', {html: 'Previous', class: 'link'}).on('click', function () {
-        search(currentQuery, currentPage - 1);
-      }).appendTo(nav);
-    }
-    $('<span/>', {html: 'Next', class: 'link'}).on('click', function () {
-      search(currentQuery, currentPage + 1);
+}
+function search (val, page) {
+  var url = 'https://www.andymiao.cn/search';
+  $('#input').trigger('blur');
+  if (val !== '') {
+    $.ajax({
+      url: url,
+      data: {
+        query: val,
+        page: page = page ? page : 0
+      },
+      dataType: 'jsonp',
+      jsonp: 'callback',
+      success: searchRes
+    });
+    $('#result').empty().addClass('spin');
+    currentPage = page;
+    currentQuery = val;
+  }
+}
+function listRes (data) {
+  if ($('#input').is(':focus')) {
+    $('#list').empty();
+    data.s.forEach(function(item){
+      var li = $('<li/>', {html: item}).on('mousedown', function(e) {
+        $('#input').off('input').val($(this).html());
+        $('#button').click();
+        e.preventDefault();
+      }).hover(function() {
+        $('#list li').removeClass('hover');
+        $(this).addClass('hover');
+      }, function() {
+        $(this).removeClass('hover');
+      });
+      $('#list').append(li);
+    });
+    $('#list').show();
+  }
+}
+function searchRes (data) {
+  var dom = $(data.html);
+  var main = dom.filter('#main');
+  var style = main.children('style');
+  var outer = $('#result');
+  var length = main.children().length;
+  main.children(`:lt(3),:gt(${length - 4})`).remove();
+  main.find('.jfp3ef>a').each(function () {
+    this.href = this.href.slice(7, this.href.indexOf('&'));
+  });
+  $('#input').off('input').on('input', list);
+  outer.removeClass('spin').empty().append(style).append(main).append(navigation());
+}
+function navigation () {
+  var nav = $('<div/>', {id: 'navigation'});
+  if (currentPage) {
+    $('<span/>', {html: 'Previous', class: 'link'}).on('click', function () {
+      search(currentQuery, currentPage - 1);
     }).appendTo(nav);
-    return nav;
   }
+  $('<span/>', {html: 'Next', class: 'link'}).on('click', function () {
+    search(currentQuery, currentPage + 1);
+  }).appendTo(nav);
+  return nav;
+}
 </script>
 </body>
 </html>
