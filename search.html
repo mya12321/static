@@ -221,7 +221,7 @@ function searchRes (data) {
   var length = main.children().length;
   main.children(`:lt(3),:gt(${length - 4})`).remove();
   main.find('.jfp3ef>a').each(function () {
-    this.href = this.href.slice(7, this.href.indexOf('&'));
+    this.href = this.href.slice(33, this.href.indexOf('&'));
   });
   $('#input').off('input').on('input', list);
   outer.removeClass('spin').empty().append(style).append(main).append(navigation());
